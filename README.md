@@ -4,6 +4,9 @@
 
 Proyecto: *INFOGEL - Portal de noticias*
 
+SuperUser: marian1 
+Password: Coder_1234
+
 Version: *1.0*
 
 Descripción del proyecto:
