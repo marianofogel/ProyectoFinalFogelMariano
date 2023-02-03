@@ -1,0 +1,80 @@
+{% extends "AppProyectoFinal/padre.html" %}
+
+{% load static %}
+{% block contenidoQueCambia %}
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('/static/assets/img/about-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>INFOGEL</h1>
+                            <span class="subheading">Noticias creadas por y para los usuarios </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+<!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        
+                            <h1> I N T E R N A C I O N A L </h1>
+                            <h3 class="post-subtitle">Noticias de todos los países</h3>
+                            <h4>Toda la información relevante del mundo AQUÍ</h4>
+                            </a>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a style="display: flex; align-items: center;">
+                            <img src="/static/assets/img/internacional1.jpg" width="150" height="150" alt="Nombre de la imagen">
+                            <h2 class="post-title">ISRAEL: Tras el ataque terrorista que dejó 7 muertos. Un agresor de 13 años disparó contra un padre y su hijo en Jerusalén.</h2>
+                          </a>                        <p class="post-meta">
+                            escrito por
+                            <a>Jairzinho</a>
+                            el 24 de Enero del 2023
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a style="display: flex; align-items: center;">
+                            <img src="/static/assets/img/internacional2.jpg" width="150" height="150" alt="Nombre de la imagen">
+                            <h2 class="post-title">CUBA: Leonardo Padura. "Ya estamos cansados de vivir tanto tiempo en la Historia</h2>
+                          </a>                        <p class="post-meta">
+                            escrito por
+                            <a> Edwin Cardona </a>
+                            el 28 de Enero del 2023
+                        </p>
+                    </div>
+                  
+                    <!-- Divider-->
+                    <p> ¡Acá podes contarnos una noticia sobre tu pais para que la posteemos pronto!
+
+                    {% if miFormulario.errors %}
+                           
+                    <p style="color: red;"> Están mal los datos, revisar por favor. </p>
+                    
+                    {% endif %}
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        
+                        <table>
+                            {{ miFormulario.as_table }}
+                        </table>
+                        <input type="submit" value="Enviar" />
+                    
+                {% endblock %}
+            </div>
+        </div>
+       </div>
+

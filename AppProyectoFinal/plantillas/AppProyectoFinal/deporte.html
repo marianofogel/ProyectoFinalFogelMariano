@@ -1,0 +1,90 @@
+{% extends "AppProyectoFinal/padre.html" %}
+
+{% load static %}
+{% block contenidoQueCambia %}
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('/static/assets/img/about-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>INFOGEL</h1>
+                            <span class="subheading">Noticias creadas por y para los usuarios </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+<!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        
+                            <h1>D E P O R T E</h1>
+                            <h3 class="post-subtitle">Futbol, basquet, tenis, rugby y mucho mas...</h3>
+                            <h4>Las mejores noticias del mundo deportivo AQUÍ</h4>
+                            </a>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a style="display: flex; align-items: center;">
+                            <img src="/static/assets/img/deporte1.jpg" width="150" height="150" alt="Nombre de la imagen">
+                            <h2 class="post-title">Bielsa rechazó la oferta del Everton: el motivo que postergó su chance de volver a dirigir en la Premier League</h2>
+                          </a>                        <p class="post-meta">
+                            escrito por
+                            <a>Emiliano Martinez</a>
+                            27 de Enero del 2023
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a style="display: flex; align-items: center;">
+                            <img src="/static/assets/img/deporte2.jpg" width="150" height="150" alt="Nombre de la imagen">
+                            <h2 class="post-title">Abierto de Australia: Stefanos Tsitsipas venció a Karen Khachanov y se metió en la final en busca de su primer Grand Slam</h2>
+                          </a>                        <p class="post-meta">
+                            escrito por
+                            <a> Angel Correa </a>
+                            28 de Enero del 2023
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a style="display: flex; align-items: center;">
+                            <img src="/static/assets/img/deporte3.avif" width="150" height="150" alt="Nombre de la imagen">
+                            <h2 class="post-title">Seis cambios y 'Chiquito' Romero titular: la penúltima prueba de Ibarra antes del debut de Boca en la Liga Profesional</h2>
+                          </a>                        <p class="post-meta">
+                            escrito por
+                            <a> Julian Alvarez </a>
+                            29 de Enero del 2023
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <h4>Dejanos saber sobre que deporte te gustaria que haya noticias la proxima semana.</h4>
+                    {% if miFormulario.errors %}
+       
+                    <p style="color: red;"> Están mal los datos, revisar por favor. </p>
+                    
+                    {% endif %}
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        
+                        <table>
+                            {{ miFormulario.as_table }}
+                        </table>
+                        <input type="submit" value="Enviar" />
+                </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "AppProyectoFinal/padre.html" %}
+
+{% load static %}
+{% block contenidoQueCambia %}
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('/static/assets/img/about-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>INFOGEL</h1>
+                            <span class="subheading">Noticias creadas por y para los usuarios </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+<!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        
+                            <h1> S O C I E D A D </h1>
+                            <h3 class="post-subtitle">Toda la informacion del pueblo y para el pueblo.</h3>
+                            <h4>Toda la información sobre la ciudad AQUÍ</h4>
+                            </a>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a style="display: flex; align-items: center;">
+                            <img src="/static/assets/img/sociedad1.jpg" width="150" height="150" alt="Nombre de la imagen">
+                            <h2 class="post-title">LANÚS: iba en una moto robada, perdió el control y se mató</h2>
+                          </a>                        <p class="post-meta">
+                            escrito por
+                            <a>Jose Sand</a>
+                            el 9 de Enero del 2023
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a style="display: flex; align-items: center;">
+                            <img src="/static/assets/img/sociedad2.avif" width="150" height="150" alt="Nombre de la imagen">
+                            <h2 class="post-title">BERAZATEGUI: Murieron tras comer achuras. Habló la hermana de uno de los dueños de la carnicería clausurada: “Sintió gusto amargo a los chinchulines”</h2>
+                          </a>                        <p class="post-meta">
+                            escrito por
+                            <a> Edwin Cardona </a>
+                            el 28 de Enero del 2023
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <h4>Acá podes cargar tus novedades sobre tu localidad para proximas redacciones, por favor, ser conciente a la hora de comunicar, el espacio lo construimos entre todos.</h4>
+                    {% if miFormulario.errors %}
+       
+                    <p style="color: red;"> Están mal los datos, revisar por favor. </p>
+                    
+                     {% endif %}
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        
+                        <table>
+                            {{ miFormulario.as_table }}
+                        </table>
+                        <input type="submit" value="Enviar" />
+                    </form>
+                    <br>
+                    <br>
+
+                    <h4>Si ya cargaste una noticia y queres verla, sumarle información o simplemente borrarla:</h4>
+                        <button type="button">
+                            <a href='{% url "List" %}' >BUSCA TU NOTICIA ACÁ</a>
+                      </button>
+                      
+
+                    
+
+
+
+
+                </div>
+            </div>
+        </div>
+{% endblock %}
