@@ -1,3 +1,10 @@
+from django.views.generic import ListView
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView
+from django.shortcuts import redirect
+from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, HttpResponse
 from django.http import HttpResponse
 from django.template import loader
@@ -18,131 +25,147 @@ from django.contrib.auth.decorators import login_required
 def inicio(request):
     return render(request, "AppProyectoFinal/inicio.html")
 
+
 @login_required
 def politica(request):
     if request.method == 'POST':
-            
-            miFormulario = PoliticaFM(request.POST) #aquí mellega toda la información del html
-            print(miFormulario)
-            
-            if miFormulario.is_valid:   #Si pasó la validación de Django
-                  informacion = miFormulario.cleaned_data
-                  politica = Politica(nombre=informacion['nombre'], apellido=informacion['apellido'], localidad=informacion['localidad'], mail=informacion['mail']) 
-                  politica.save()
-                  return render(request, "AppProyectoFinal/inicio.html") #Vuelvo al inicio o a donde quieran
-    else: 
-        miFormulario = PoliticaFM() #Formulario vacio para construir el html
 
-    return render(request, "AppProyectoFinal/politica.html", {"miFormulario":miFormulario})
+        # aquí mellega toda la información del html
+        miFormulario = PoliticaFM(request.POST)
+        print(miFormulario)
+
+        if miFormulario.is_valid:  # Si pasó la validación de Django
+            informacion = miFormulario.cleaned_data
+            politica = Politica(nombre=informacion['nombre'], apellido=informacion['apellido'],
+                                localidad=informacion['localidad'], mail=informacion['mail'])
+            politica.save()
+            # Vuelvo al inicio o a donde quieran
+            return render(request, "AppProyectoFinal/inicio.html")
+    else:
+        miFormulario = PoliticaFM()  # Formulario vacio para construir el html
+
+    return render(request, "AppProyectoFinal/politica.html", {"miFormulario": miFormulario})
+
 
 @login_required
 def sociedad(request):
     if request.method == 'POST':
-            
-            miFormulario = SociedadFM(request.POST) #aquí mellega toda la información del html
-            print(miFormulario)
-            
-            if miFormulario.is_valid:   #Si pasó la validación de Django
-                  informacion = miFormulario.cleaned_data
-                  sociedad = Sociedad(nombre=informacion['nombre'], apellido=informacion['apellido'], localidad=informacion['localidad'], mail=informacion['mail'], noticia=informacion['noticia']) 
-                  sociedad.save()
-                  return render(request, "AppProyectoFinal/inicio.html") #Vuelvo al inicio o a donde quieran
-    else: 
-        miFormulario = SociedadFM() #Formulario vacio para construir el html
 
-    return render(request, "AppProyectoFinal/sociedad.html", {"miFormulario":miFormulario})
+        # aquí mellega toda la información del html
+        miFormulario = SociedadFM(request.POST)
+        print(miFormulario)
+
+        if miFormulario.is_valid:  # Si pasó la validación de Django
+            informacion = miFormulario.cleaned_data
+            sociedad = Sociedad(nombre=informacion['nombre'], apellido=informacion['apellido'],
+                                localidad=informacion['localidad'], mail=informacion['mail'], noticia=informacion['noticia'])
+            sociedad.save()
+            # Vuelvo al inicio o a donde quieran
+            return render(request, "AppProyectoFinal/inicio.html")
+    else:
+        miFormulario = SociedadFM()  # Formulario vacio para construir el html
+
+    return render(request, "AppProyectoFinal/sociedad.html", {"miFormulario": miFormulario})
+
 
 @login_required
 def deporte(request):
     if request.method == 'POST':
-            
-            miFormulario = DeporteFM(request.POST) #aquí mellega toda la información del html
-            print(miFormulario)
-            
-            if miFormulario.is_valid:   #Si pasó la validación de Django
-                  informacion = miFormulario.cleaned_data
-                  deporte = Deporte(nombre=informacion['nombre'], apellido=informacion['apellido'], deporte=informacion['deporte'], club=informacion['club'], mail=informacion['mail']) 
-                  deporte.save()
-                  return render(request, "AppProyectoFinal/inicio.html") #Vuelvo al inicio o a donde quieran
-    else: 
-        miFormulario = DeporteFM() #Formulario vacio para construir el html
 
-    return render(request, "AppProyectoFinal/deporte.html", {"miFormulario":miFormulario})
+        # aquí mellega toda la información del html
+        miFormulario = DeporteFM(request.POST)
+        print(miFormulario)
+
+        if miFormulario.is_valid:  # Si pasó la validación de Django
+            informacion = miFormulario.cleaned_data
+            deporte = Deporte(nombre=informacion['nombre'], apellido=informacion['apellido'],
+                              deporte=informacion['deporte'], club=informacion['club'], mail=informacion['mail'])
+            deporte.save()
+            # Vuelvo al inicio o a donde quieran
+            return render(request, "AppProyectoFinal/inicio.html")
+    else:
+        miFormulario = DeporteFM()  # Formulario vacio para construir el html
+
+    return render(request, "AppProyectoFinal/deporte.html", {"miFormulario": miFormulario})
+
 
 @login_required
 def internacional(request):
     if request.method == 'POST':
-            
-            miFormulario = InternacionalFM(request.POST) #aquí mellega toda la información del html
-            print(miFormulario)
-            
-            if miFormulario.is_valid:   #Si pasó la validación de Django
-                  informacion = miFormulario.cleaned_data
-                  internacional = Internacional(nombre=informacion['nombre'], apellido=informacion['apellido'], pais=informacion['pais'], noticia=informacion['noticia'], mail=informacion['mail']) 
-                  internacional.save()
-                  return render(request, "AppProyectoFinal/inicio.html") #Vuelvo al inicio o a donde quieran
-    else: 
-        miFormulario = InternacionalFM() #Formulario vacio para construir el html
 
-    return render(request, "AppProyectoFinal/internacional.html", {"miFormulario":miFormulario})
+        # aquí mellega toda la información del html
+        miFormulario = InternacionalFM(request.POST)
+        print(miFormulario)
 
-#def index(request):
-    #return render(request, 'AppProyectoFinal/index.html')
+        if miFormulario.is_valid:  # Si pasó la validación de Django
+            informacion = miFormulario.cleaned_data
+            internacional = Internacional(nombre=informacion['nombre'], apellido=informacion['apellido'],
+                                          pais=informacion['pais'], noticia=informacion['noticia'], mail=informacion['mail'])
+            internacional.save()
+            # Vuelvo al inicio o a donde quieran
+            return render(request, "AppProyectoFinal/inicio.html")
+    else:
+        miFormulario = InternacionalFM()  # Formulario vacio para construir el html
 
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, logout, authenticate
-from django.shortcuts import redirect
+    return render(request, "AppProyectoFinal/internacional.html", {"miFormulario": miFormulario})
+
+# def index(request):
+    # return render(request, 'AppProyectoFinal/index.html')
+
 
 def login_request(request):
 
     if request.method == 'POST':
-        form = AuthenticationForm(request, data = request.POST)
+        form = AuthenticationForm(request, data=request.POST)
 
         if form.is_valid():  # Si pasó la validación de Django
 
             usuario = form.cleaned_data.get('username')
             contrasenia = form.cleaned_data.get('password')
 
-            user = authenticate(username= usuario, password=contrasenia)
+            user = authenticate(username=usuario, password=contrasenia)
 
             if user is not None:
                 login(request, user)
 
-                return render(request, "AppProyectoFinal/inicio.html", {"mensaje":f"Bienvenido {usuario}"})
-            
+                return render(request, "AppProyectoFinal/inicio.html", {"mensaje": f"Bienvenido {usuario}"})
+
             else:
                 form = AuthenticationForm()
-                return render(request, "AppProyectoFinal/login.html", {"mensaje":"Datos incorrectos"}, {"form": form})
-           
+                return render(request, "AppProyectoFinal/login.html", {"mensaje": "Datos incorrectos"}, {"form": form})
+
         else:
 
-            return render(request, "AppProyectoFinal/login.html", {"form" : form , "mensaje":"Formulario erroneo"})
+            return render(request, "AppProyectoFinal/login.html", {"form": form, "mensaje": "Formulario erroneo"})
 
     form = AuthenticationForm()
 
     return render(request, "AppProyectoFinal/login.html", {"form": form})
 
+
 def register(request):
 
-      if request.method == 'POST':
+    if request.method == 'POST':
 
-            form = UserCreationForm(request.POST)
-            form = UserRegisterForm(request.POST)
-            if form.is_valid():
+        form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
 
-                  username = form.cleaned_data['username']
-                  form.save()
-                  return redirect("/AppProyectoFinal/login")
+            username = form.cleaned_data['username']
+            form.save()
+            return redirect("/AppProyectoFinal/login")
 
-      else:
-            form = UserCreationForm()       
-            form = UserRegisterForm()     
+    else:
+        form = UserCreationForm()
+        form = UserRegisterForm()
 
-      return render(request,"AppProyectoFinal/registro.html" ,  {"form":form})
+    return render(request, "AppProyectoFinal/registro.html",  {"form": form})
+
 
 def inicio(request):
 
     return render(request, "AppProyectoFinal/inicio.html")
+
 
 @login_required
 def editarPerfil(request):
@@ -171,20 +194,18 @@ def editarPerfil(request):
 
     return render(request, "AppProyectoFinal/editarPerfil.html", {"miFormulario": miFormulario, "usuario": usuario})
 
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
 
 class SociedadList(ListView):
 
     model = Sociedad
     template_name = "AppProyectoFinal/sociedad_list.html"
 
+
 class SociedadDetalle(DetailView):
 
     model = Sociedad
     template_name = "AppProyectoFinal/sociedad_detalle.html"
+
 
 class SociedadCreacion(CreateView):
 
@@ -192,11 +213,13 @@ class SociedadCreacion(CreateView):
     success_url = "/AppProyectoFinal/sociedad/list"
     fields = ['nombre', 'noticia']
 
+
 class SociedadUpdate(UpdateView):
 
     model = Sociedad
     success_url = "/AppProyectoFinal/sociedad/list"
     fields = ['nombre', 'noticia']
+
 
 class SociedadDelete(DeleteView):
 
@@ -212,10 +235,10 @@ def buscar(request):
         noticias = []
     return render(request, 'AppProyectoFinal/inicio.html', {'noticias': noticias})
 
+
 def nosotros(request):
     return render(request, "AppProyectoFinal/nosotros.html")
 
+
 def nada(request):
     return render(request, "AppProyectoFinal/nada.html")
-
-    
